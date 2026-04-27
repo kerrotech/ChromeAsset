@@ -1,0 +1,123 @@
+:root {
+  --bg-start: #f4eee5;
+  --bg-end: #d9cfc1;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --ink: #1f1a16;
+  --muted: #5a524a;
+  --accent: #145a7a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--ink);
+}
+
+body {
+  background: radial-gradient(circle at top right, var(--bg-start), var(--bg-end));
+}
+
+.hidden {
+  display: none;
+}
+
+.web-section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.kiosk-webview {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: radial-gradient(circle at top right, var(--bg-start), var(--bg-end));
+  text-align: center;
+  padding: 2rem;
+}
+
+.overlay h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.screen {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: 0.02em;
+}
+
+.status {
+  margin: 0;
+  color: var(--muted);
+}
+
+.cards {
+  width: min(92vw, 980px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.card {
+  border-radius: 20px;
+  background: var(--card-bg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  padding: 2rem;
+}
+
+.label {
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.9rem;
+}
+
+.value {
+  margin-top: 0.75rem;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: clamp(2rem, 7vw, 5.5rem);
+  line-height: 1;
+  word-break: break-word;
+}
+
+.value-small {
+  font-size: clamp(1.5rem, 4.2vw, 3rem);
+  line-height: 1.15;
+}
+
+@media (min-width: 1080px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+  }
+}

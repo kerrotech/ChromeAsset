@@ -1,0 +1,28 @@
+{
+  "name": "Chrome Asset Tag Kiosk",
+  "description": "Kiosk Chrome App wrapper that passes enterprise device attributes to a hosted web app.",
+  "version": "1.1.0",
+  "manifest_version": 2,
+  "minimum_chrome_version": "84",
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "permissions": [
+    "enterprise.deviceAttributes",
+    "webview"
+  ],
+  "webview": {
+    "partitions": [
+      {
+        "name": "persist:kioskweb",
+        "accessible_resources": [
+          "http://*/*",
+          "https://*/*"
+        ]
+      }
+    ]
+  },
+  "kiosk_enabled": true
+}

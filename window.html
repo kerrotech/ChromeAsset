@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Device Asset Tag</title>
+    <link rel="stylesheet" href="window.css" />
+  </head>
+  <body>
+    <section id="webSection" class="web-section hidden" aria-label="Hosted kiosk web app">
+      <webview id="kioskWebview" class="kiosk-webview" partition="persist:kioskweb"></webview>
+      <div id="overlay" class="overlay">
+        <h1>Kiosk Web App</h1>
+        <p id="status" class="status">Loading device attributes...</p>
+      </div>
+    </section>
+
+    <main id="fallbackSection" class="screen hidden">
+      <h1>Device Attributes (Fallback)</h1>
+      <p id="fallbackStatus" class="status">Hosted URL is not configured.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="label">Asset ID</div>
+          <div id="assetId" class="value">--</div>
+        </div>
+        <div class="card">
+          <div class="label">Serial Number</div>
+          <div id="serialNumber" class="value value-small">--</div>
+        </div>
+        <div class="card">
+          <div class="label">Annotated Location</div>
+          <div id="annotatedLocation" class="value value-small">--</div>
+        </div>
+      </div>
+    </main>
+
+    <script src="window.config.js"></script>
+    <script src="window.js"></script>
+  </body>
+</html>
