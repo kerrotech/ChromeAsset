@@ -4,18 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ChromeOS Device Board</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="layout">
-      <header class="hero">
+    <main class="page-main">
+      <header class="hero panel">
         <p class="eyebrow">Managed ChromeOS Kiosk</p>
         <h1>Device Identity Board</h1>
         <p id="status" class="status">Waiting for device attributes...</p>
       </header>
 
       <section class="panel-grid" aria-label="Device attributes">
-        <article class="panel panel-primary">
+        <article class="panel panel-primary value-asset">
           <h2>Asset ID</h2>
           <p id="assetId" class="value">--</p>
         </article>

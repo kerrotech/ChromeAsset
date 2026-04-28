@@ -1,11 +1,11 @@
 :root {
-  --cream: #f8f3ea;
-  --sand: #e6dcca;
-  --ink: #1d1a16;
-  --muted: #5f564b;
-  --blue: #155f82;
-  --blue-dark: #0f4056;
-  --card: rgba(255, 255, 255, 0.9);
+  --bg: #0d1117;
+  --panel: #161c24;
+  --ink: #ebf1f8;
+  --muted: #98a6b8;
+  --line: #2b3646;
+  --accent: #2bc9a3;
+  --accent-2: #ffb35c;
 }
 
 * {
@@ -15,87 +15,106 @@
 html,
 body {
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   margin: 0;
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+  font-family: "Inter", sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(circle at 20% 0%, #fff9ef 0%, transparent 38%),
-    radial-gradient(circle at 100% 100%, #d5e7ee 0%, transparent 30%),
-    linear-gradient(125deg, var(--cream), var(--sand));
+    radial-gradient(circle at 10% 10%, rgba(255, 179, 92, 0.18), transparent 30%),
+    radial-gradient(circle at 88% 16%, rgba(43, 201, 163, 0.18), transparent 36%),
+    linear-gradient(180deg, rgba(13, 17, 23, 0.92), rgba(10, 14, 20, 0.95)),
+    var(--bg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-.layout {
+.page-main {
   min-height: 100vh;
   display: grid;
-  align-content: center;
-  gap: 1.2rem;
-  padding: clamp(1rem, 4vw, 2.4rem);
+  align-content: start;
+  gap: 1.1rem;
+  width: min(1200px, 96vw);
+  margin: 0 auto;
+  padding: clamp(1rem, 2.5vw, 1.8rem) 0;
 }
 
 .hero {
   text-align: center;
+  padding: clamp(1rem, 2vw, 1.3rem);
 }
 
 .eyebrow {
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
+  font-family: "IBM Plex Mono", monospace;
 }
 
 h1 {
-  margin: 0.2rem 0 0;
-  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  margin: 0.4rem 0 0;
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  letter-spacing: -0.02em;
 }
 
 .status {
-  margin: 0.5rem 0 0;
+  margin: 0.55rem 0 0;
   color: var(--muted);
+  font-size: 0.9rem;
 }
 
 .panel-grid {
   display: grid;
-  gap: 0.9rem;
+  gap: 1rem;
   grid-template-columns: 1fr;
 }
 
 .panel {
-  background: var(--card);
-  border-radius: 20px;
-  border: 1px solid rgba(21, 95, 130, 0.15);
-  box-shadow: 0 14px 30px rgba(15, 64, 86, 0.14);
-  padding: 1.3rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 14px 28px rgba(3, 6, 11, 0.36);
+  padding: 1.05rem;
 }
 
 .panel-primary {
-  background: linear-gradient(140deg, rgba(21, 95, 130, 0.12), rgba(255, 255, 255, 0.92));
+  background:
+    linear-gradient(140deg, rgba(43, 201, 163, 0.08), rgba(22, 28, 36, 0.95)),
+    var(--panel);
+  border-color: rgba(43, 201, 163, 0.38);
 }
 
 h2 {
   margin: 0;
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  font-size: 0.74rem;
+  font-family: "IBM Plex Mono", monospace;
 }
 
 .value {
-  margin: 0.65rem 0 0;
-  color: var(--blue);
+  margin: 0.72rem 0 0;
+  color: var(--accent);
   font-weight: 800;
-  line-height: 1.05;
-  font-size: clamp(2rem, 7.8vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-size: clamp(2.1rem, 7.8vw, 5.1rem);
   word-break: break-word;
 }
 
 .value-secondary {
-  font-size: clamp(1.45rem, 4.2vw, 2.5rem);
-  color: var(--blue-dark);
+  font-size: clamp(1.35rem, 4.2vw, 2.35rem);
+  color: #d9e7f7;
+}
+
+.value-asset .value {
+  text-shadow: 0 0 20px rgba(43, 201, 163, 0.15);
 }
 
 @media (min-width: 980px) {

@@ -99,6 +99,34 @@
   var pending = 3;
   var errors = [];
   var hostedUrl = resolveHostedUrl();
+  var webviewListenersAttached = false;
+
+  function ensureWebviewListeners() {
+    if (webviewListenersAttached) {
+      return;
+    }
+
+    webviewListenersAttached = true;
+
+    // loadstop is the most reliable signal that webview navigation completed.
+    webviewEl.addEventListener("loadstop", function () {
+      overlayEl.classList.add("hidden");
+
+      if (errors.length) {
+        setWebStatus("Hosted app loaded with attribute warnings.");
+      } else {
+        setWebStatus("Hosted app loaded.");
+      }
+    });
+
+    webviewEl.addEventListener("loadabort", function (event) {
+      var reason = "Hosted web app failed to load in kiosk mode.";
+      if (event && event.reason) {
+        reason += " Reason: " + event.reason;
+      }
+      showFallback(reason);
+    });
+  }
 
   function done(errorText) {
     if (errorText) {
@@ -117,6 +145,8 @@
 
     setWebStatus("Launching hosted web app...");
 
+    ensureWebviewListeners();
+
     try {
       webviewEl.src = buildWebAppUrl(hostedUrl, errors);
     } catch (err) {
@@ -126,20 +156,6 @@
 
     webSectionEl.classList.remove("hidden");
     fallbackSectionEl.classList.add("hidden");
-
-    webviewEl.addEventListener("contentload", function () {
-      overlayEl.classList.add("hidden");
-    });
-
-    webviewEl.addEventListener("loadabort", function () {
-      showFallback("Hosted web app failed to load in kiosk mode.");
-    });
-
-    if (errors.length) {
-      setWebStatus("Hosted app loaded with attribute warnings.");
-    } else {
-      setWebStatus("Hosted app loaded.");
-    }
   }
 
   readAttribute("getDeviceAssetId", assetIdEl, "Asset ID", done);
