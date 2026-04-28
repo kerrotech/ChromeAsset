@@ -60,9 +60,12 @@
 
   function buildWebAppUrl(baseUrl, warnings) {
     var url = new URL(baseUrl);
+    var manifest = chrome.runtime && chrome.runtime.getManifest ? chrome.runtime.getManifest() : null;
+    var appVersion = manifest && manifest.version ? manifest.version : "unknown";
     url.searchParams.set("assetId", asQueryValue(assetIdEl.textContent));
     url.searchParams.set("serialNumber", asQueryValue(serialNumberEl.textContent));
     url.searchParams.set("annotatedLocation", asQueryValue(annotatedLocationEl.textContent));
+    url.searchParams.set("appVersion", appVersion);
 
     if (warnings.length) {
       url.searchParams.set("deviceAttrStatus", "partial");

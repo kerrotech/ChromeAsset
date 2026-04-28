@@ -41,7 +41,7 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .web-section {
@@ -83,6 +83,7 @@ body {
   gap: 1rem;
   text-align: center;
   padding: 2rem;
+  padding-bottom: 4rem;
 }
 
 h1 {
