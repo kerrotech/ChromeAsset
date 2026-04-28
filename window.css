@@ -219,7 +219,7 @@ h1 {
   position: relative;
   flex: 1;
   min-height: 0;
-  margin: 1.2rem auto 1.5rem;
+  margin: 1rem auto 1rem;
   width: min(1200px, 96vw);
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -230,8 +230,8 @@ h1 {
 
 .kiosk-webview {
   width: 100%;
-  height: 70vh;
-  min-height: 420px;
+  height: calc(100vh - 84px);
+  min-height: 360px;
   border: 0;
   display: block;
 }
@@ -279,7 +279,7 @@ h1 {
   }
 
   .kiosk-webview {
-    min-height: 320px;
-    height: 62vh;
+    min-height: 300px;
+    height: calc(100vh - 76px);
   }
 }

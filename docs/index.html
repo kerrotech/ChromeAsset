@@ -7,34 +7,11 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <nav>
-      <div class="nav-left">
-        <div class="app-name">ChromeOS Device Information Panel</div>
-      </div>
-      <div class="nav-right">
-        <span id="appVersion" class="status-badge">Version --</span>
-      </div>
-    </nav>
-
-    <header class="page-header">
-      <div class="page-header-inner">
-        <div class="page-title-row">
-          <div>
-            <h1>Device Attributes</h1>
-            <p class="subtitle">Hosted panel for values forwarded by the kiosk wrapper.</p>
-          </div>
-          <div class="page-actions">
-            <span id="status" class="status-badge">Waiting for device attributes...</span>
-          </div>
-        </div>
-      </div>
-    </header>
-
     <main class="page-main">
       <section class="panel" aria-label="Device attributes">
         <div class="panel-head">
           <h2>Attribute Summary</h2>
-          <span id="attrState" class="meta">Awaiting wrapper values.</span>
+          <span id="status" class="meta">Awaiting wrapper values.</span>
         </div>
         <div class="summary-grid">
           <article class="summary-item">

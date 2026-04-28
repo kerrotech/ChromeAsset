@@ -16,26 +16,12 @@
       </div>
     </nav>
 
-    <header class="page-header">
-      <div class="page-header-inner">
-        <div class="page-title-row">
-          <div>
-            <h1>Device Attributes</h1>
-            <p class="subtitle">Kiosk wrapper status and locally-resolved device details.</p>
-          </div>
-          <div class="page-actions">
-            <span id="status" class="status-badge">Loading device attributes...</span>
-          </div>
-        </div>
-      </div>
-    </header>
-
     <section id="webSection" class="web-section hidden" aria-label="Hosted kiosk web app">
       <webview id="kioskWebview" class="kiosk-webview" partition="persist:kioskweb"></webview>
       <div id="overlay" class="overlay">
         <div class="overlay-card">
           <h2>Launching Hosted Kiosk App</h2>
-          <p class="status">Using device attributes to start the configured URL.</p>
+          <p id="status" class="status">Using device attributes to start the configured URL.</p>
         </div>
       </div>
     </section>
