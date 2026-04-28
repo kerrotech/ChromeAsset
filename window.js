@@ -8,6 +8,13 @@
   var assetIdEl = document.getElementById("assetId");
   var serialNumberEl = document.getElementById("serialNumber");
   var annotatedLocationEl = document.getElementById("annotatedLocation");
+  var appVersionEl = document.getElementById("appVersion");
+
+  function setAppVersion() {
+    var manifest = chrome.runtime && chrome.runtime.getManifest ? chrome.runtime.getManifest() : null;
+    var version = manifest && manifest.version ? manifest.version : "unknown";
+    appVersionEl.textContent = "Version " + version;
+  }
 
   function setWebStatus(text) {
     webStatusEl.textContent = text;
@@ -88,6 +95,7 @@
   }
 
   if (!chrome.enterprise || !chrome.enterprise.deviceAttributes) {
+    setAppVersion();
     setWebStatus("enterprise.deviceAttributes API not available.");
     setUnavailable(assetIdEl);
     setUnavailable(serialNumberEl);
@@ -100,6 +108,8 @@
   var errors = [];
   var hostedUrl = resolveHostedUrl();
   var webviewListenersAttached = false;
+
+  setAppVersion();
 
   function ensureWebviewListeners() {
     if (webviewListenersAttached) {

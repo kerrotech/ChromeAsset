@@ -24,6 +24,22 @@ body {
   background: radial-gradient(circle at top right, var(--bg-start), var(--bg-end));
 }
 
+.app-version {
+  position: fixed;
+  left: 50%;
+  bottom: 0.85rem;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(31, 26, 22, 0.76);
+  color: #f8f5ef;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
 .hidden {
   display: none;
 }
