@@ -7,34 +7,101 @@
     <link rel="stylesheet" href="window.css" />
   </head>
   <body>
+    <nav>
+      <div class="nav-left">
+        <div class="app-name">ChromeOS Device Information Panel</div>
+      </div>
+      <div class="nav-right">
+        <span id="appVersion" class="status-badge">Version --</span>
+      </div>
+    </nav>
+
+    <header class="page-header">
+      <div class="page-header-inner">
+        <div class="page-title-row">
+          <div>
+            <h1>Device Attributes</h1>
+            <p class="subtitle">Kiosk wrapper status and locally-resolved device details.</p>
+          </div>
+          <div class="page-actions">
+            <span id="status" class="status-badge">Loading device attributes...</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
     <section id="webSection" class="web-section hidden" aria-label="Hosted kiosk web app">
       <webview id="kioskWebview" class="kiosk-webview" partition="persist:kioskweb"></webview>
       <div id="overlay" class="overlay">
-        <h1>Kiosk Web App</h1>
-        <p id="status" class="status">Loading device attributes...</p>
+        <div class="overlay-card">
+          <h2>Launching Hosted Kiosk App</h2>
+          <p class="status">Using device attributes to start the configured URL.</p>
+        </div>
       </div>
     </section>
 
-    <main id="fallbackSection" class="screen hidden">
-      <h1>Device Attributes (Fallback)</h1>
-      <p id="fallbackStatus" class="status">Hosted URL is not configured.</p>
-      <div class="cards">
-        <div class="card">
-          <div class="label">Asset ID</div>
-          <div id="assetId" class="value">--</div>
+    <main id="fallbackSection" class="page-main hidden">
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Attribute Summary</h2>
+          <span id="fallbackStatus" class="meta">Hosted URL is not configured.</span>
         </div>
-        <div class="card">
-          <div class="label">Serial Number</div>
-          <div id="serialNumber" class="value value-small">--</div>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <div class="label">Asset ID</div>
+            <div id="assetId" class="value">--</div>
+          </div>
+          <div class="summary-item">
+            <div class="label">Serial Number</div>
+            <div id="serialNumber" class="value">--</div>
+          </div>
+          <div class="summary-item">
+            <div class="label">Annotated Location</div>
+            <div id="annotatedLocation" class="value">--</div>
+          </div>
+          <div class="summary-item">
+            <div class="label">Directory Device ID</div>
+            <div id="directoryDeviceId" class="value">--</div>
+          </div>
         </div>
-        <div class="card">
-          <div class="label">Annotated Location</div>
-          <div id="annotatedLocation" class="value value-small">--</div>
-        </div>
-      </div>
-    </main>
+      </section>
 
-    <div id="appVersion" class="app-version" aria-live="polite">Version --</div>
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Device and Runtime Details</h2>
+        </div>
+        <div class="details-grid">
+          <div class="detail-row">
+            <span class="detail-label">Platform</span>
+            <span id="platform" class="detail-value">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Language</span>
+            <span id="language" class="detail-value">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Timezone</span>
+            <span id="timezone" class="detail-value">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Viewport</span>
+            <span id="viewport" class="detail-value">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Network</span>
+            <span id="onlineStatus" class="detail-value">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Hosted URL</span>
+            <span id="hostedUrl" class="detail-value">--</span>
+          </div>
+          <div class="detail-row detail-row-wide">
+            <span class="detail-label">User Agent</span>
+            <span id="userAgent" class="detail-value detail-mono">--</span>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <script src="window.config.js"></script>
     <script src="window.js"></script>

@@ -8,7 +8,15 @@
   var assetIdEl = document.getElementById("assetId");
   var serialNumberEl = document.getElementById("serialNumber");
   var annotatedLocationEl = document.getElementById("annotatedLocation");
+  var directoryDeviceIdEl = document.getElementById("directoryDeviceId");
   var appVersionEl = document.getElementById("appVersion");
+  var platformEl = document.getElementById("platform");
+  var userAgentEl = document.getElementById("userAgent");
+  var languageEl = document.getElementById("language");
+  var timezoneEl = document.getElementById("timezone");
+  var viewportEl = document.getElementById("viewport");
+  var onlineStatusEl = document.getElementById("onlineStatus");
+  var hostedUrlEl = document.getElementById("hostedUrl");
 
   function setAppVersion() {
     var manifest = chrome.runtime && chrome.runtime.getManifest ? chrome.runtime.getManifest() : null;
@@ -25,11 +33,35 @@
   }
 
   function setField(element, value) {
+    if (!element) {
+      return;
+    }
+
     element.textContent = value || "(empty)";
   }
 
   function setUnavailable(element) {
+    if (!element) {
+      return;
+    }
+
     element.textContent = "Unavailable";
+  }
+
+  function setRuntimeDetails(hostedUrl) {
+    setField(platformEl, navigator.platform || "Unavailable");
+    setField(userAgentEl, navigator.userAgent || "Unavailable");
+    setField(languageEl, navigator.language || "Unavailable");
+
+    try {
+      setField(timezoneEl, Intl.DateTimeFormat().resolvedOptions().timeZone || "Unavailable");
+    } catch (err) {
+      setUnavailable(timezoneEl);
+    }
+
+    setField(viewportEl, window.innerWidth + " x " + window.innerHeight);
+    setField(onlineStatusEl, navigator.onLine ? "Online" : "Offline");
+    setField(hostedUrlEl, hostedUrl || "(not configured)");
   }
 
   function resolveHostedUrl() {
@@ -65,6 +97,12 @@
     url.searchParams.set("assetId", asQueryValue(assetIdEl.textContent));
     url.searchParams.set("serialNumber", asQueryValue(serialNumberEl.textContent));
     url.searchParams.set("annotatedLocation", asQueryValue(annotatedLocationEl.textContent));
+    url.searchParams.set("directoryDeviceId", asQueryValue(directoryDeviceIdEl.textContent));
+    url.searchParams.set("platform", asQueryValue(platformEl.textContent));
+    url.searchParams.set("language", asQueryValue(languageEl.textContent));
+    url.searchParams.set("timezone", asQueryValue(timezoneEl.textContent));
+    url.searchParams.set("viewport", asQueryValue(viewportEl.textContent));
+    url.searchParams.set("onlineStatus", asQueryValue(onlineStatusEl.textContent));
     url.searchParams.set("appVersion", appVersion);
 
     if (warnings.length) {
@@ -107,12 +145,25 @@
     return;
   }
 
-  var pending = 3;
+  var pending = 4;
   var errors = [];
   var hostedUrl = resolveHostedUrl();
   var webviewListenersAttached = false;
 
   setAppVersion();
+  setRuntimeDetails(hostedUrl);
+
+  window.addEventListener("online", function () {
+    setField(onlineStatusEl, "Online");
+  });
+
+  window.addEventListener("offline", function () {
+    setField(onlineStatusEl, "Offline");
+  });
+
+  window.addEventListener("resize", function () {
+    setField(viewportEl, window.innerWidth + " x " + window.innerHeight);
+  });
 
   function ensureWebviewListeners() {
     if (webviewListenersAttached) {
@@ -174,4 +225,5 @@
   readAttribute("getDeviceAssetId", assetIdEl, "Asset ID", done);
   readAttribute("getDeviceSerialNumber", serialNumberEl, "Serial Number", done);
   readAttribute("getDeviceAnnotatedLocation", annotatedLocationEl, "Annotated Location", done);
+  readAttribute("getDirectoryDeviceId", directoryDeviceIdEl, "Directory Device ID", done);
 })();

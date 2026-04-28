@@ -62,13 +62,20 @@ window.KIOSK_WEB_APP_URL = "https://octocat.github.io/chrome-asset/";
 - `assetId`
 - `serialNumber`
 - `annotatedLocation`
+- `directoryDeviceId`
+- `platform`
+- `language`
+- `timezone`
+- `viewport`
+- `onlineStatus`
+- `appVersion`
 - `deviceAttrStatus` (`ok` or `partial`)
 - `deviceAttrWarnings` (present when status is `partial`)
 
 Example URL loaded by wrapper:
 
 ```text
-https://kiosk.yourdomain.com/?assetId=ABC-123&serialNumber=SN0001&annotatedLocation=HQ-Lab-3&deviceAttrStatus=ok
+https://kiosk.yourdomain.com/?assetId=ABC-123&serialNumber=SN0001&annotatedLocation=HQ-Lab-3&directoryDeviceId=123abc&platform=Linux+x86_64&language=en-US&timezone=America%2FChicago&viewport=1920+x+1080&onlineStatus=Online&appVersion=1.1.3&deviceAttrStatus=ok
 ```
 
 When using GitHub Pages, this will look like:
@@ -79,7 +86,7 @@ https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPOSITORY_NAME/?assetId=ABC-123&ser
 
 ## Fallback Behavior
 
-- If hosted URL is missing or invalid, the app shows local fallback cards with the attributes.
+- If hosted URL is missing or invalid, the app shows a local fallback dashboard with enterprise attributes and runtime details.
 - If one or more attribute calls fail, the hosted app still loads and receives `deviceAttrStatus=partial`.
 
 ## Deploy as Kiosk App
